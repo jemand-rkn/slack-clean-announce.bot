@@ -25,7 +25,7 @@ for f in forecasts:
 # LINE送信
 headers = {
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {LINE_TOKEN}"
+    "Authorization": f"Bearer {ACCESS_TOKEN}"
 }
 data = {
     "to": USER_ID,

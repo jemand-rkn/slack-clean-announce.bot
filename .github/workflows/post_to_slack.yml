@@ -2,7 +2,7 @@ name: Weekly Slack Post
 
 on:
   schedule:
-    - cron: '0 0 * * 1'  # 毎週月曜（UTC0時 → JST9時）
+    - cron: '0 0 * * 0'  # 毎週日曜（UTC0時 → JST9時）
   workflow_dispatch:
 
 jobs:

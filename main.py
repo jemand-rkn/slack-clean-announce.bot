@@ -23,7 +23,7 @@ F322_1 = sheet.acell("K8").value
 F322_2 = sheet.acell("K9").value
 
 
-name_id_dict = {"日高": "@f.hidaka", "佐々木": "@j.sasaki", "岩本": "@k.iwamoto", "@k.nomura": 3, "甲斐野": "@s.kaino", "山田": "@y.yamada", 
+name_id_dict = {"日高": "@f.hidaka", "佐々木": "@j.sasaki", "岩本": "@k.iwamoto", "野村":"@k.nomura", "甲斐野": "@s.kaino", "山田": "@y.yamada", 
             "Li": "@s.li", "福田": "@t.fukuda", "柳田": "@k.yanagida", "徳永": "@t.tokunaga", "木下": "@y.kinoshita", "小林": "@t.kobayashi",
            "服部": "@h.hattori", "加藤": "@t.kato", "伊藤": "@k.ito", "岡部": "@a.okabe", "尾崎": "@m.ozaki", "手代木": "@m.teshirogi", "森山": "@h.moriyama", "矢端": "@h.yabata"}
 

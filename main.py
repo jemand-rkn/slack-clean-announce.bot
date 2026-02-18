@@ -1,8 +1,8 @@
 import os
 import json
 import gspread
+import requests
 from oauth2client.service_account import ServiceAccountCredentials
-from slack_sdk import WebClient
 
 # Google Sheets 認証
 creds_json = json.loads(os.environ["GOOGLE_CREDENTIALS_JSON"])
@@ -24,9 +24,21 @@ F322_2 = sheet.acell("K9").value
 H402_1 = sheet.acell("M8").value
 H402_2 = sheet.acell("M9").value
 
+def send_slack(text: str):
+    payload = {"text": text}
+    res = requests.post(
+        os.environ["SLACK_WEBHOOK_URL"],
+        data=json.dumps(payload),
+        headers={"Content-Type": "application/json"}
+    )
+    if res.status_code == 200:
+        print("Sent successfully")
+    else:
+        print(f"Failed: {res.status_code}, {res.text}")
+
 
 name_id_dict = {"日高": "@f.hidaka", "佐々木": "@j.sasaki", "岩本": "@k.iwamoto", "野村":"@k.nomura", "甲斐野": "@s.kaino", "山田": "@y.yamada", 
-            "Li": "@s.li", "福田": "@t.fukuda", "柳田": "@k.yanagida", "徳永": "@t.tokunaga", "木下": "@y.kinoshita", "小林": "@t.kobayashi",
+            "柳田": "@k.yanagida",
            "服部": "@h.hattori", "加藤": "@t.kato", "伊藤": "@k.ito", "岡部": "@a.okabe", "尾崎": "@m.ozaki", "手代木": "@m.teshirogi", "森山": "@h.moriyama", "矢端": "@h.yabata"}
 
 #print(cell_value1, cell_value2)
@@ -38,6 +50,5 @@ message = f"【{cleen_date}掃除連絡】\nD455:  {name_id_dict[D455_1]}  {name
 #     message += f"- {row['日付']}: {row['内容']}\n"
 
 # Slack 投稿
-slack_token = os.environ["SLACK_BOT_TOKEN"]
-slack_client = WebClient(token=slack_token)
-slack_client.chat_postMessage(channel="#clean_remind", text=message)
+payload = {"text": message}
+send_slack(message)

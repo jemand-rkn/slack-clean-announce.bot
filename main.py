@@ -49,5 +49,5 @@ message = f"【{cleen_date}掃除連絡】\nD455:  <@{name_id_dict[D455_1]}>  <@
 #     message += f"- {row['日付']}: {row['内容']}\n"
 
 # Slack 投稿
-# send_slack(message)
-print(message)
+send_slack(message)
+# print(message)

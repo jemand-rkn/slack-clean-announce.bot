@@ -10,7 +10,7 @@ scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope)
 client = gspread.authorize(creds)
 
-sheet_id = ""
+sheet_id = os.environ["SHEET_ID"]
 sheet = client.open_by_key(sheet_id).sheet1  # 1番目のシートを取得
 # スプレッドシートからデータ取得
 #sheet = client.open("YourSpreadsheetName").sheet1
@@ -37,9 +37,8 @@ def send_slack(text: str):
         print(f"Failed: {res.status_code}, {res.text}")
 
 
-name_id_dict = {"日高": "@f.hidaka", "佐々木": "@j.sasaki", "岩本": "@k.iwamoto", "野村":"@k.nomura", "甲斐野": "@s.kaino", "山田": "@y.yamada", 
-            "柳田": "@k.yanagida",
-           "服部": "@h.hattori", "加藤": "@t.kato", "伊藤": "@k.ito", "岡部": "@a.okabe", "尾崎": "@m.ozaki", "手代木": "@m.teshirogi", "森山": "@h.moriyama", "矢端": "@h.yabata"}
+name_id_json = os.environ.get("NAME_TO_SLACK_ID_JSON")
+name_id_dict = json.loads(name_id_json) if name_id_json else None
 
 #print(cell_value1, cell_value2)
 #records = sheet.get_all_records()

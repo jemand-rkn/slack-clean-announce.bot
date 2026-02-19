@@ -23,4 +23,6 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        NAME_TO_SLACK_ID_JSON: ${{ secrets.NAME_TO_SLACK_ID_JSON }}
+        SHEET_ID: ${{ secrets.SHEET_ID }}
       run: python main.py

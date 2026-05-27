@@ -17,14 +17,18 @@ sheet = client.open_by_key(sheet_id).sheet1  # 1番目のシートを取得
 cleen_date = sheet.acell("C8:C9").value
 D455_1 = sheet.acell("G8").value
 D455_2 = sheet.acell("G9").value
-experiment_1 = sheet.acell("I8").value
-experiment_2 = sheet.acell("I9").value
-F322_1 = sheet.acell("K8").value
-F322_2 = sheet.acell("K9").value
-H402_1 = sheet.acell("M8").value
-H402_2 = sheet.acell("M9").value
-J213_1 = sheet.acell("O8").value
-J213_2 = sheet.acell("O9").value
+D450_1 = sheet.acell("I8").value
+D450_2 = sheet.acell("I9").value
+exp_1 = sheet.acell("K8").value
+exp_2 = sheet.acell("K9").value
+J314_1 = sheet.acell("M8").value
+J314_2 = sheet.acell("M9").value
+H402_1 = sheet.acell("O8").value
+H402_2 = sheet.acell("O9").value
+J213_1 = sheet.acell("Q8").value
+J213_2 = sheet.acell("Q9").value
+F322_1 = sheet.acell("S8").value
+F322_2 = sheet.acell("S9").value
 
 def send_slack(text: str):
     payload = {"text": text}
@@ -46,7 +50,7 @@ sheet_url = os.environ.get("SHEET_URL")
 
 #print(cell_value1, cell_value2)
 #records = sheet.get_all_records()
-message = f"【{cleen_date}掃除連絡】\nD455:  <@{name_id_dict[D455_1]}>  <@{name_id_dict[D455_2]}>\n実験室:  <@{name_id_dict[experiment_1]}>  <@{name_id_dict[experiment_2]}> \nF322:  <@{name_id_dict[F322_1]}>  <@{name_id_dict[F322_2]}>\nH402: <@{name_id_dict[H402_1]}> <@{name_id_dict[H402_2]}>\nJ213:  <@{name_id_dict[J213_1]}>  <@{name_id_dict[J213_2]}>\n\n・掃除・ゴミ出し一回ごとに日付を記入\n{sheet_url}\n\n・所要時間が30分を超える場合は30分毎に日付を記入(例：1h15minなら3回日付を記入)\n・二人分掃除を行った場合は，二回分記入してください．\n・研究室のためのボランティア作業(棚の組み立て等)も記入可能"
+message = f"【{cleen_date}掃除連絡】\nD455:  <@{name_id_dict[D455_1]}>  <@{name_id_dict[D455_2]}>\nD450:  <@{name_id_dict[D450_1]}>  <@{name_id_dict[D450_2]}>\n実験室:  <@{name_id_dict[exp_1]}>  <@{name_id_dict[exp_2]}> \nF322:  <@{name_id_dict[F322_1]}>  <@{name_id_dict[F322_2]}>\nH402: <@{name_id_dict[H402_1]}> <@{name_id_dict[H402_2]}>\nJ213:  <@{name_id_dict[J213_1]}>  <@{name_id_dict[J213_2]}>\nJ314:  <@{name_id_dict[J314_1]}>  <@{name_id_dict[J314_2]}>\n\n・掃除・ゴミ出し一回ごとに日付を記入\n{sheet_url}\n\n・所要時間が30分を超える場合は30分毎に日付を記入(例：1h15minなら3回日付を記入)\n・二人分掃除を行った場合は，二回分記入してください．\n・研究室のためのボランティア作業(棚の組み立て等)も記入可能"
 # # Slack メッセージ整形
 # message = "*今週の報告*\n"
 # for row in records[-5:]:  # 最新の5件
